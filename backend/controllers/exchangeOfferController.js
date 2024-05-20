@@ -1,4 +1,4 @@
-const {getDb} = require('/Users/saurabhyadav30/Desktop/fullstack-dapp/backend/databaseConnect.js');
+const {getDb} = require('../databaseConnect.js');
 
 const getAllOffers = async (req, res) => {
     try {

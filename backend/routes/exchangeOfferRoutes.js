@@ -1,7 +1,7 @@
 
 const express = require('express');
 const { getAllOffers,
-     getOfferById} = require('/Users/saurabhyadav30/Desktop/fullstack-dapp/backend/controllers/exchangeOfferController.js');
+     getOfferById} = require('../controllers/exchangeOfferController.js');
 
 const router = express.Router();
 
