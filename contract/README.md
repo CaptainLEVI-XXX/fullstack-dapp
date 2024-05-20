@@ -1,66 +1,65 @@
-## Foundry
+# Exchange Offer Smart Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository contains the implementation and testing of an Exchange Offer smart contract. The smart contract facilitates creating, filling, and canceling trade offers between two ERC-20 tokens.
 
-Foundry consists of:
+## Overview
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The Exchange Offer smart contract allows users to create trade offers for swapping one ERC-20 token for another. Users can specify the token pair and the amount they wish to trade. Other users can then fill these offers by providing the requested tokens.
 
-## Documentation
+## Smart Contract
 
-https://book.getfoundry.sh/
+### ExchangeOffer.sol
+
+The `ExchangeOffer` smart contract provides the following functionalities:
+
+- **Create Trade Offer**: Users can create a trade offer by specifying the tokens and amounts they wish to trade. A listing fee is required to create an offer.
+- **Cancel Trade Offer**: The maker of a trade offer can cancel it, reclaiming the tokens they offered.
+- **Fill Trade Offer**: Other users can fill a trade offer by providing the requested tokens, completing the trade.
+
+### Key Functions
+
+- `createTradeOffer(address tokenA, address tokenB, uint256 amountA, uint256 amountB)`
+- `cancelTradeOffer(uint index)`
+- `fillTradeOffer(uint index, address tokenB, uint amountB)`
+- `withdrawFunds(uint256 _amount, address _to)`
+
+### Events
+
+- `OfferCreated(address indexed maker, address indexed tokenA, address indexed tokenB, uint256 amountA, uint256 amountB, uint index)`
+- `OfferCancelled(address indexed maker, uint indexed index)`
+- `OfferFilled(address indexed maker, uint indexed index)`
+- `PartialFill(address indexed trader, uint256 amountA, uint256 amountB, uint indexed index)`
+
+## Testing
+
+### ExchangeOfferTest.sol
+
+The test file `ExchangeOfferTest.sol` contains unit tests for the `ExchangeOffer` smart contract using the Foundry framework. The tests ensure that the contract functions as expected, covering scenarios for creating, canceling, and filling trade offers.
+
+## Setup and Installation
+
+### Prerequisites
+
+- [Foundry](https://getfoundry.sh/) - Ethereum testing framework
+
+### Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/CaptainLEVI-XXX/fullstack-dapp.git
+    cd contract/
+    ```
+
+2. Install dependencies:
+    ```sh
+    forge install
+    ```
 
 ## Usage
 
-### Build
+### Running Tests
 
-```shell
-$ forge build
-```
+To run the tests, execute the following command:
 
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+```sh
+forge test
