@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const dotenv = require("dotenv").config(); 
-const port = process.env.PORT ||  process.env.PORT2 ||  process.env.PORT3;
+const port = process.env.PORT ;
 const Web3 = require('web3');
 const cors = require('cors');
 const web3 = new Web3(new Web3.providers.WebsocketProvider(process.env.NODE_URL));
