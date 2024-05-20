@@ -9,7 +9,7 @@ export default function Home() {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
-    fetch('https://fullstack-dapp-3.onrender.com')
+    fetch('https://fullstack-dapp-4.onrender.com/api/offers')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
